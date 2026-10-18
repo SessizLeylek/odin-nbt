@@ -17,7 +17,7 @@ main :: proc() {
 	parsed_nbt := nbt.parse_nbt(bytes.buffer_to_bytes(&buffer))
 	//fmt.println(parsed_nbt)
 
-	world_data := parsed_nbt.root_compound["Data"].(nbt.TagCompound)
+	world_data := parsed_nbt.root["Data"].(nbt.TagCompound)
 
 	world_name := world_data["LevelName"]
 

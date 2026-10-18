@@ -88,8 +88,8 @@ SingleTag :: union {
 }
 
 Nbt :: struct {
-	root_name:     string,
-	root_compound: TagCompound,
+	name:     string,
+	root: TagCompound,
 }
 
 parse_nbt :: proc(raw_nbt: []byte) -> Nbt {
@@ -116,7 +116,7 @@ parse_nbt :: proc(raw_nbt: []byte) -> Nbt {
 	root_name := _read_string(&reader)
 	root_compound := _read_compound(&reader)
 
-	return Nbt{root_name = root_name, root_compound = root_compound}
+	return Nbt{name = root_name, root = root_compound}
 }
 
 _read_byte :: proc(reader: ^bytes.Reader) -> TagByte {
