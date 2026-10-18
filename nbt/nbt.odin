@@ -5,29 +5,6 @@ import "core:encoding/endian"
 import "core:fmt"
 import "core:strings"
 
-IS_DEMO :: #config(IS_DEMO, false)
-when IS_DEMO {
-	main :: proc() {
-		fmt.printfln("Hello World!")
-	}
-}
-
-TAG_FROM_TYPE :: [TagType]typeid {
-	.End       = #type TagEnd,
-	.Byte      = #type TagByte,
-	.Short     = #type TagShort,
-	.Int       = #type TagInt,
-	.Long      = #type TagLong,
-	.Float     = #type TagFloat,
-	.Double    = #type TagDouble,
-	.ByteArray = #type TagByteArray,
-	.String    = #type TagString,
-	.List      = #type TagList,
-	.Compound  = #type TagCompound,
-	.IntArray  = #type TagIntArray,
-	.LongArray = #type TagLongArray,
-}
-
 TagType :: enum byte {
 	End,
 	Byte,
