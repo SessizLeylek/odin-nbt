@@ -337,8 +337,11 @@ _read_list :: proc(reader: ^bytes.Reader) -> TagList {
 		return array
 
 	case .Compound:
-		// TODO: Implement
-		return {}
+		array := make([]TagCompound, list_length)
+		for i in 0 ..< list_length {
+			array[i] = _read_compound(reader)
+		}
+		return array
 
 	case .IntArray:
 		array := make([]TagIntArray, list_length)
