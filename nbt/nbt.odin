@@ -69,7 +69,11 @@ Nbt :: struct {
 	root: TagCompound,
 }
 
-parse_nbt :: proc(raw_nbt: []byte) -> Nbt {
+// Parses Nbt as a tree structure, makes allocations using the given allocator
+// It is suggested to use a new allocator to be able to batch free all Nbt data after use
+parse_nbt :: proc(raw_nbt: []byte, allocator := context.allocator) -> Nbt {
+	context.allocator = allocator
+
 	reader: bytes.Reader
 	bytes.reader_init(&reader, raw_nbt)
 
@@ -94,6 +98,13 @@ parse_nbt :: proc(raw_nbt: []byte) -> Nbt {
 	root_compound := _read_compound(&reader)
 
 	return Nbt{name = root_name, root = root_compound}
+}
+
+// Encodes the Nbt tree structure into decoded bytes
+// Don't forget to free the byte array after use
+encode_nbt :: proc(nbt: Nbt, allocator := context.allocator) -> []byte {
+	assert(false, "Not Implemented!")
+	return nil
 }
 
 _read_byte :: proc(reader: ^bytes.Reader) -> TagByte {
